@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi Valentín?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: crimson;
+            background-size: cover;
+            filter: brightness(0.7);
+        }
+
+        #container {
+            position: relative;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+        }
+
+        #acepto {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #noGracias {
+            background-color: #f44336;
+            color: white;
+        }
+
+        #acepto:hover,
+        #noGracias:hover {
+            transform: scale(1.1);
+        }
+
+        #confeti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.gifer.com/6SSp.gif') no-repeat center center;
+            background-size: cover;
+            display: none;
+        }
+
+        .gif {
+            width: 100px;
+            height: 100px;
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1 class="body__title">♥ ¿Quieres ser mi Valentin? ♥</h1>
+        <div id="gif">
+            <img id="gifImg" src="https://i.gifer.com/4GZ9.gif" alt="GIF">
+        </div>
+        <br>
+        <br>
+        <button id="acepto">Quiero 💞</button>
+        <button id="noGracias">No, Feo</button>
+        <div id="confeti"></div>
+    </div>
+    <script>
+        const confeti = document.getElementById('confeti');
+        const aceptoBtn = document.getElementById('acepto');
+        const noGraciasBtn = document.getElementById('noGracias');
+        const felizGif = document.getElementById('gifImg'); // Cambiado de gifImg a felizGif
+
+        aceptoBtn.addEventListener('click', () => {
+            confeti.style.display = 'block';
+            setTimeout(() => {
+                confeti.style.display = 'none';
+                felizGif.style.display = 'none'; // Oculta el GIF feliz
+                mostrarMensaje("¡TE AMOOOOOOO!"); // Muestra el mensaje "¡Te amo!"
+                abrirVideoYouTube(); // Abre el video de YouTube
+            }, 4000); // Oculta el confeti después de 4 segundos
+            felizGif.style.display = 'block'; // Cambiado de gifImg a felizGif
+            felizGif.src = "https://i.gifer.com/6kc.gif"; // Cambia la imagen a tu_gif_feliz.gif
+            // Ocultar los botones
+            aceptoBtn.style.display = 'none';
+            noGraciasBtn.style.display = 'none';
+        });
+
+        function mostrarMensaje(mensaje) {
+            const mensajeElemento = document.createElement('div');
+            mensajeElemento.textContent = mensaje;
+            mensajeElemento.style.fontSize = '24px';
+            mensajeElemento.style.color = 'white';
+            mensajeElemento.style.marginTop = '20px';
+            document.getElementById('container').appendChild(mensajeElemento);
+        }
+
+        function abrirVideoYouTube() {
+            // Abre el video de YouTube en una nueva pestaña
+            window.open('https://www.youtube.com/watch?v=r84h8WFKfF0', '_blank');
+        }
+
+        noGraciasBtn.addEventListener('mouseenter', () => {
+            noGraciasBtn.style.position = 'absolute';
+            const maxTop = window.innerHeight - noGraciasBtn.clientHeight;
+            const maxLeft = window.innerWidth - noGraciasBtn.clientWidth;
+            const randomTop = Math.random() * maxTop;
+            const randomLeft = Math.random() * maxLeft;
+            noGraciasBtn.style.top = Math.min(randomTop, maxTop) + 'px';
+            noGraciasBtn.style.left = Math.min(randomLeft, maxLeft) + 'px';
+        });
+
+    </script>
+</body>
+
+</html>
